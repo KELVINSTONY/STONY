@@ -46,6 +46,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/update', [HomeController::class,'updating'])->name('update');
     Route::get('/allocation', [HomeController::class,'allocation'])->name('allocation');
     Route::get('pharmacy/purchases/goods-receiving', 'GoodsReceivingController@index')->name('goods-receiving.index');
+    Route::get('/goods-received/create', [GoodsReceivingController::class, 'create'])->name('goods-received.create');
+    Route::post('/goods-received/store', [GoodsReceivingController::class, 'store'])->name('goods-received.store');
 
 Route::resource('medicines', MedicineController::class);
 Route::resource('patients', PatientController::class);
@@ -56,7 +58,11 @@ Route::resource('doctors', DoctorController::class);
 
 Route::resource('sales', SaleController::class);
 Route::resource('receive', ReceiveController::class);
-Route::resource('stock', StockController::class);
+Route::get('stock', [StockController::class,'index'])->name('stocking');
+Route::get('sale', [StockController::class,'sale'])->name('sale');
+Route::post('sale_store', [SaleController::class,'store'])->name('sale-store');
+Route::get('export/medicines', [StockController::class,'exportToExcel'])->name('export.medicines');
+
 
 Route::resource('roles', RoleController::class);
 Route::get('invoice', [InvoiceController::class, 'Invoice']);

@@ -2,19 +2,25 @@
 
 @section('content')
     <h1>Receive Goods</h1>
-    <form action="{{ route('sale-store') }}" method="POST">
+    <form action="{{ route('goods-received.store') }}" method="POST">
         @csrf
         <label for="medicine_id">Search and Select a Product:</label>
         <input type="text" id="searchInput" onkeyup="filterProducts()">
         <select name="medicine_id" id="medicine_id">
             <option value="">Select a product</option>
-            @foreach($data as $products)
+            @foreach($product as $products)
                 <option value="{{ $products->id }}">{{ $products->generic_name }}</option>
             @endforeach
         </select>
 
         <label for="quantity">Quantity:</label>
         <input type="integer" name="quantity">
+        <label for="unit_cost">Unit Cost:</label>
+        <input type="integer" name="unit_cost">
+        <label for="selling_price">Selling Price:</label>
+        <input type="integer" name="selling_price">
+        <label for="expire_date">Expire Date:</label>
+        <input type="date" name="expire_date">
         <button type="submit">Receive Goods</button>
     </form>
 

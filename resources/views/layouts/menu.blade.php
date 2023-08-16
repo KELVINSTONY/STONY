@@ -208,7 +208,7 @@
                 <li class=""><a href="#!" class="">Sales</a>
                     <ul class="pcoded-submenu">
                         
-                            <li class=""><a href="#"
+                            <li class=""><a href="{{route('sale')}}"
                                     class="">Point of Sale</a>
                             </li>
                        
@@ -251,7 +251,7 @@
                 <li class=""><a href="#!" class="">Inventory</a>
                     <ul class="pcoded-submenu">
                         
-                            <li class=""><a href="#"
+                            <li class=""><a href="{{route('stocking')}}"
                                     class="">Current Stock</a>
                             </li>
                        

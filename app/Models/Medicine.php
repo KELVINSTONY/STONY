@@ -12,19 +12,25 @@ class Medicine extends Model
      'generic_name','dosage_form','national_id_no','active_ingredients','product_strenght','registrant',
      'registrant_country','local_technical_representative','manufacturer','manufacturer_country','registration_status'];
 
-    // Relationships
-    // public function prescriptionItems()
-    // {
-    //     return $this->hasMany(PrescriptionItem::class);
-    // }
 
-    // public function stock()
-    // {
-    //     return $this->hasOne(Stock::class);
-    // }
+    public function prescriptionItems()
+    {
+        return $this->hasMany(PrescriptionItem::class);
+    }
 
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
+    public function stock()
+    {
+        return $this->hasOne(Stock::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function GoodReceiving()
+    {
+        return $this->hasMany(Medicine::class);
+    }
+
 }

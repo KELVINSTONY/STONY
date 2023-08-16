@@ -33,9 +33,13 @@
                     Summary</a>
             </li>
     </ul>
-    <div class="row">
+    <div class="row"> 
         <div class="col-md-3">
                     <a href="{{ route('medicines.create') }}" class="btn btn-primary">Add New Medicine</a>
+        </div>
+
+        <div class="col-md-3">
+            <a href="{{ route('goods-received.create') }}" class="btn btn-primary">Receive goods</a>
         </div>
         <div class="col-md-3">
             <a href="{{ route('patients.create') }}" class="btn btn-primary">Add New Patient</a>

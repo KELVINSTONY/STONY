@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CurrentStock;
-use App\GoodsReceiving;
+use App\Models\GoodsReceiving;
 use App\Invoice;
 use App\Order;
 use App\OrderDetail;
@@ -13,6 +13,7 @@ use App\Product;
 use App\Setting;
 use App\StockTracking;
 use App\Store;
+use App\Models\Medicine;
 use App\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +23,42 @@ use View;
 class GoodsReceivingController extends Controller
 {
 
+    public function create()
+    {
+        $medicine = Medicine::all();
+        return view('goods_received.create')->with(['product'=>$medicine]);
+    }
+
+    public function store(Request $request)
+    {
+        
+        // Validate the form data
+        $validatedData = $request->validate([
+            'medicine_id' => 'required',
+            'quantity' => 'required|integer|min:1',
+            'unit_cost' => 'required|integer|min:1',
+            'selling_price' => 'required|integer|min:1',
+            'expire_date' => 'required|date|nullable',
+        ]);
+        $quantity = $validatedData['quantity'];
+        $unit_cost = $validatedData['unit_cost'];
+        $selling_price = $validatedData['selling_price']; 
+        $total_cost = $quantity * $unit_cost;
+        $total_profit = ($quantity * $selling_price) - $total_cost;
+        GoodsReceiving::create([
+            'medicine_id' => $validatedData['medicine_id'],
+            'quantity' => $quantity,
+            'unit_cost' => $unit_cost,
+            'selling_price' => $selling_price,
+            'user_id' => Auth::user()->id, 
+            'total_cost' => $total_cost,
+            'total_profit' => $total_profit,
+            'expire_date' => $validatedData['expire_date'],
+            'received_at' => now(),
+        ]);
+    
+        return redirect()->route('goods-received.create')->with('success', 'Goods received successfully');
+    }
     public function index()
     {
         /*get default store*/

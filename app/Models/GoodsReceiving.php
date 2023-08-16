@@ -2,21 +2,19 @@
 
 namespace App;
 
+namespace App\Models;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 // use Spatie\Activitylog\Traits\LogsActivity;
 
 class GoodsReceiving extends Model
 {
-    // use LogsActivity;
-
-    protected $table = 'inv_incoming_stock';
+   
+    protected $table = 'goods_received';
     public $timestamps = 'false';
-    protected $fillable = ['id', 'product_id', 'quantity', 'unit_cost', 'total_cost', 'supplier_id',
-        'expire_date', 'total_sell', 'item_profit', 'sell_price','created_by','created_at'];
-
-    protected static $logAttributes = ['id', 'product_id', 'quantity', 'unit_cost', 'total_cost', 'supplier_id',
-        'expire_date', 'total_sell', 'item_profit', 'sell_price','created_by','created_at'];
-
+    protected $fillable = ['id', 'medicine_id', 'quantity', 'unit_cost','selling_price', 'user_id','total_cost','total_profit',
+        'expire_date', 'received_at',];
 
     public function supplier()
     {
@@ -27,7 +25,7 @@ class GoodsReceiving extends Model
     public function product()
     {
 
-        return $this->belongsTo(Product::class, 'product_id');
+        return $this->belongsTo(Medicine::class, 'medicine_id');
     }
 
     public function invoice()

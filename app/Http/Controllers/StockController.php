@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\GoodsReceiving;
+use App\Models\Medicine;
+use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\MedicinesExport;
+
 
 class StockController extends Controller
 {
@@ -11,8 +17,21 @@ class StockController extends Controller
      */
     public function index()
     {
-        //
+        $data = DB::table('goods_received')->select('goods_received.*','medicines.*')->join('medicines','medicines.id','=','goods_received.medicine_id')
+        ->get();
+        return view('goods_received.index')->with(['data'=> $data]);
     }
+
+    public function sale (){
+        $data = DB::table('goods_received')->select('goods_received.*','medicines.*')->join('medicines','medicines.id','=','goods_received.medicine_id')
+        ->get();
+        return view('sales.create')->with(['data'=> $data]);
+    }
+
+    public function exportToExcel()
+{
+    return Excel::download(new MedicinesExport(), 'medicines.xlsx');
+}
 
     /**
      * Show the form for creating a new resource.
