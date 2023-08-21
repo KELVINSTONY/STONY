@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Medicine extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'id';
     protected $table = 'medicines';
     protected $fillable = ['product_category', 'certificate_number', 'brand_name', 'Classification',
      'generic_name','dosage_form','national_id_no','active_ingredients','product_strenght','registrant',
@@ -31,6 +32,11 @@ class Medicine extends Model
     public function GoodReceiving()
     {
         return $this->hasMany(Medicine::class);
+    }
+
+    public function salesDetails()
+    {
+        return $this->hasMany(SalesDetail::class, 'medicine_id');
     }
 
 }

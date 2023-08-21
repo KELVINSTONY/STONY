@@ -12,12 +12,12 @@ class RoleAndPermissionSeeder extends Seeder
 {
     /**
 
-     * 
-     * 
-     * 
+     *
+     *
+     *
      * Run the database seeds.
      */
-   
+
         public function run()
     {
         Permission::create(['name' => 'create-users']);
@@ -61,5 +61,5 @@ class RoleAndPermissionSeeder extends Seeder
             'delete-medicine',
         ]);
     }
-    
+
 }

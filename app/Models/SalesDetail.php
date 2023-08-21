@@ -1,19 +1,18 @@
 <?php
 
-namespace App;
+namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class SalesDetail extends Model
 {
-    protected $table = 'sales_details';
+    protected $table = 'sale_items';
+    protected $fillable = ['sale_id','medicine_id',
+    'quantity','unit_price','subtotal'];
+    
     public $timestamps = false;
 
 
-    public function sale()
-    {
-        return $this->belongsTo(Sale::class,'sale_id','id');
-    }
-
+   
 
 //    public function sale_return()
 //    {
@@ -25,12 +24,19 @@ class SalesDetail extends Model
     	return $this->belongsTo(CurrentStock::class, 'stock_id');
     }
 
-    public function product()
-    {
-        return $this->belongsTo(Product::class, 'product_id');
-    }
+    
     public function revokePayments(){
        return $this->hasMany(RevokedSalePayment::class, 'sale_details_id', 'id');
+    }
+
+    public function sale()
+    {
+        return $this->belongsTo(Sale::class, 'sale_id');
+    }
+
+    public function medicine()
+    {
+        return $this->belongsTo(Medicine::class, 'medicine_id');
     }
 
 }

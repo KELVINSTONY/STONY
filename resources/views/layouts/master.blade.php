@@ -43,6 +43,29 @@
     <script src="{{asset("assets/plugins/tinymce/tinymce.min.js")}}"></script>
     {{-- <script src="{{asset("assets/js/fa-icons.js")}}"></script> --}}
 
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="CodedThemes" />
+
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('APOTEk2.ico') }}">
+
+    <!-- fontawesome icon -->
+    <link rel="stylesheet" href="{{ asset('assets/fonts/fontawesome/css/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/fonts/fontawesome/css/all.min.css') }}">
+
+    <!-- animation css -->
+    <link rel="stylesheet" href="{{ asset('assets/plugins/animation/css/animate.min.css') }}">
+    <!-- vendor css -->
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
     @yield("page_css")
 
 
@@ -142,9 +165,9 @@
                               </div>
                          </div>
                          <ul class="noti-body d-inline-block m-b-0 w-100">
-                            
+
                          </ul>
-                         
+
 
                      </div>
                 </div>
@@ -191,8 +214,8 @@
                         </form>
                         <ul class="pro-body">
                             {{-- <li><a href="#!" class="dropdown-item"><i class="feather icon-settings"></i> Settings</a></li> --}}
-                            <li><a href="#" class="dropdown-item"><i class="feather icon-user"></i> Profile</a></li>
-                           
+                            <li><a href="{{route('profile-index')}}" class="dropdown-item"><i class="feather icon-user"></i> Profile</a></li>
+
                             <li><a href="{{ route('update') }}" class="dropdown-item"><i
                                         class="feather icon-x-circle"></i> Change Password</a></li>
                             <!-- <li><a href="message.html" class="dropdown-item"><i class="feather icon-mail"></i> My Messages</a></li> -->
@@ -333,14 +356,14 @@
                 "not_id": id,
             },
             success: function (data) {
-                
+
             },
             complete: function(){
                 $('#span_counter').html('');
                 load_unseen_notification();
             },
             error: function(){
-                
+
             }
         });
     }
@@ -362,20 +385,20 @@
         });
     }
     $(document).ready(function(){
-     
+
         load_unseen_notification();
 
         $(document).on('click', '.dropdown-toggle', function(){
         $('.count').html('');
         load_unseen_notification('yes');
         });
-        
-        setInterval(function(){ 
+
+        setInterval(function(){
         load_unseen_notification();
         }, 5000);
 
 
-        
+
 
         $( '#mark_all_as_read' ).click(function(e) {
             e.preventDefault();
@@ -387,18 +410,18 @@
                     "_token": "{{csrf_token()}}",
                 },
                 success: function (data) {
-                    
+
                 },
                 complete: function(){
                     $('#span_counter').html('');
                     load_unseen_notification();
                 },
                 error: function(){
-                    
+
                 }
             });
         });
-     
+
     });
 </script>
 @endcan

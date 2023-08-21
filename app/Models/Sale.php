@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Medicine;
+use App\Models\SalesDetail;
 
 class Sale extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'prescription_id', 'total_amount', 'payment_type'];
+    protected $fillable = ['medicine_id','user_id', 'quantity', 'total_amount'];
 
     // Relationships
     public function prescription()
@@ -19,6 +21,17 @@ class Sale extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id');
     }
+
+
+    public function saleDetails()
+    {
+        return $this->hasMany(SalesDetail::class, 'sale_id');
+    }
+    public function medicine()
+    {
+        return $this->belongsTo(Medicine::class, 'id');
+    }
+
 }

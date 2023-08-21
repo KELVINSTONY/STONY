@@ -23,7 +23,9 @@ class StockController extends Controller
     }
 
     public function sale (){
-        $data = DB::table('goods_received')->select('goods_received.*','medicines.*')->join('medicines','medicines.id','=','goods_received.medicine_id')
+        $data = DB::table('inventory')->select('inventory.*','medicines.*')
+            ->join('medicines','medicines.id','=','inventory.medicine_id')
+            ->where('inventory.quantity','>',1)
         ->get();
         return view('sales.create')->with(['data'=> $data]);
     }

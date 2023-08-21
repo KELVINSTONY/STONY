@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\CurrentStock;
 use App\Models\GoodsReceiving;
 use App\Invoice;
+use App\Models\Inventory;
 use App\Order;
 use App\OrderDetail;
 use App\PriceCategory;
@@ -26,12 +27,15 @@ class GoodsReceivingController extends Controller
     public function create()
     {
         $medicine = Medicine::all();
+        foreach ($medicine as $med) {
+            $med->concatenatedInfo = $med->generic_name . ' - ' . $med->product_strenght;
+        }
         return view('goods_received.create')->with(['product'=>$medicine]);
     }
 
     public function store(Request $request)
     {
-        
+
         // Validate the form data
         $validatedData = $request->validate([
             'medicine_id' => 'required',
@@ -42,21 +46,28 @@ class GoodsReceivingController extends Controller
         ]);
         $quantity = $validatedData['quantity'];
         $unit_cost = $validatedData['unit_cost'];
-        $selling_price = $validatedData['selling_price']; 
+        $selling_price = $validatedData['selling_price'];
         $total_cost = $quantity * $unit_cost;
         $total_profit = ($quantity * $selling_price) - $total_cost;
-        GoodsReceiving::create([
+        $receiving = GoodsReceiving::firstOrNew([
             'medicine_id' => $validatedData['medicine_id'],
             'quantity' => $quantity,
             'unit_cost' => $unit_cost,
             'selling_price' => $selling_price,
-            'user_id' => Auth::user()->id, 
+            'user_id' => Auth::user()->id,
             'total_cost' => $total_cost,
             'total_profit' => $total_profit,
             'expire_date' => $validatedData['expire_date'],
             'received_at' => now(),
         ]);
-    
+        $receiving->save();
+
+        $inventory = Inventory::firstOrNew(['medicine_id' => $receiving->medicine_id]);
+        $inventory->quantity += $quantity; // Append the quantity
+        $inventory->unit_cost = $unit_cost;
+        $inventory->selling_price = $selling_price;
+        $inventory->expire_date = $receiving->expire_date;
+        $inventory->save();
         return redirect()->route('goods-received.create')->with('success', 'Goods received successfully');
     }
     public function index()
@@ -358,7 +369,7 @@ class GoodsReceivingController extends Controller
             $stock_tracking->movement = 'IN';
             $stock_tracking->save();
 
-            // $find_product_category = PriceList::where('stock_id', $overal_stock_id)->first();       
+            // $find_product_category = PriceList::where('stock_id', $overal_stock_id)->first();
 
             $price = new PriceList;
             $price->stock_id = $overal_stock_id;
@@ -552,7 +563,7 @@ class GoodsReceivingController extends Controller
                     ->where('price_category_id', $request->invoice_price_category)
                     ->orderby('id', 'desc')
                     ->get();
-                    
+
                 if ($get_created_pricecategory->isEmpty()) {
 
                     $price = new PriceList;
@@ -564,7 +575,7 @@ class GoodsReceivingController extends Controller
                     $price->save();
 
                 }
-                
+
                 $incoming_stock = new GoodsReceiving;
                 $incoming_stock->product_id = $single_item['id'];
                 $incoming_stock->supplier_id = $request->supplier;

@@ -13,28 +13,28 @@
                 <li class="active"><a href="{{ route('patients.index') }}"
                         class="">Patients</a>
                 </li>
-         
+
                 <li a href="#">Vital
                         Details</a>
                 </li>
-       
+
                 <li href="/allocation">Allocations</a></li>
-       
+
                 <li a href="#">IPD
                         Patients</a></li>
-           
+
                 <li a href="#">IPD Observation</a>
                 </li>
-       
+
                 <li a href="#">IPD
                         History</a></li>
-          
+
                 <li a href="#" >Sick
                         Sheet</a></li>
-         
+
                 <li class="{!! Request::is('patient/merge') ? 'active' : '' !!}"><a href="#" class="">Patient
                         Merge</a></li>
-          
+
         </ul>
     </li>
     <li class="nav-item pcoded-hasmenu {!! Request::is('consultation/consultation') || Request::is('consultation/history') ? 'active pcoded-trigger' : '' !!}">
@@ -43,20 +43,20 @@
             <span class="pcoded-mtext">Consultation</span>
         </a>
         <ul class="pcoded-submenu">
-            
+
                 <li class="{!! Request::is('consultation/consultation') ? 'active' : '' !!}"><a href="#"
                         class="">Consultation</a>
                 </li>
-           
-            
+
+
                 <li class="{!! Request::is('consultation/history') ? 'active' : '' !!}"><a href="#"
                         class="">History</a>
                 </li>
-           
-            
+
+
                 <li class=""><a href="#" class="">Patients
                     Attended</a></li>
-           
+
         </ul>
 
     </li>
@@ -70,16 +70,16 @@
             <span class="pcoded-mtext">Dental</span>
         </a>
         <ul class="pcoded-submenu">
-            
+
                 <li class=""><a href="#"
                         class="">Consultation</a>
                 </li>
-           
-            
+
+
                 <li class=""><a href="#"
                         class="">History</a>
                 </li>
-           
+
 
         </ul>
 
@@ -94,39 +94,39 @@
             <span class="pcoded-mtext">Laboratory</span>
         </a>
         <ul class="pcoded-submenu">
-            
+
                 <li class=""><a href="#" class="">Test
                         Order
                         Booking</a></li>
-           
-            
+
+
                 <li class=""><a href="#" class="">Order Book
                         Status</a></li>
-           
-            
+
+
                 <li class=""><a href="#" class="">Auto Result
                         Posting</a></li>
-           
-            
+
+
                 <li class=""><a href="#" class="">Test Result
                         Report</a></li>
-           
-            
+
+
                 <li class=""><a href="#" class="">Reagent
                         Receiving</a></li>
-           
-            
+
+
                 <li class=""><a href="#" class="">Reagent
                         Stock</a></li>
-           
-            
+
+
                 <li class=""><a href="#" class="">Reagent Ledger</a>
                 </li>
-           
-            
+
+
                 <li class=""><a href="#" class="">Reagent Usage</a>
                 </li>
-           
+
         </ul>
     </li>
 
@@ -136,24 +136,24 @@
             <span class="pcoded-mtext">Procedures</span>
         </a>
         <ul class="pcoded-submenu">
-            
+
                 <li class=""><a href="#"
                         class="">Procedure Booking</a></li>
-           
 
-            
+
+
                 <li class=""><a href="#" class="">Procedure
                         Status</a></li>
-           
 
-            
+
+
                 <li class=""><a href="#" class="">Surgery
                     Schedule</a></li>
-           
-            
+
+
                 <li class=""><a href="#" class="">Surgery
                     Report</a></li>
-           
+
         </ul>
     </li>
 
@@ -164,18 +164,18 @@
             <span class="pcoded-mtext">Radiology</span>
         </a>
         <ul class="pcoded-submenu">
-            
+
                 <li class=""><a href="#" class="">Imaging
                         Booking</a></li>
-           
-            
+
+
                 <li class=""><a href="#" class="">Imaging
                         Status</a></li>
-           
-            
+
+
                 <li class=""><a href="#" class="">Imaging
                         Report</a></li>
-           
+
         </ul>
     </li>
 
@@ -204,41 +204,41 @@
         <a href="#!" class="nav-link"><span class="pcoded-micon"><i class="fas fa-briefcase-medical"></i></span>
             <span class="pcoded-mtext">Pharmacy</span></a>
         <ul class="pcoded-submenu">
-            
+
                 <li class=""><a href="#!" class="">Sales</a>
                     <ul class="pcoded-submenu">
-                        
+
                             <li class=""><a href="{{route('sale')}}"
                                     class="">Point of Sale</a>
                             </li>
-                       
-                        
+
+
                             <li class=""><a href="#" class="">Quote
                                     List</a>
                             </li>
-                       
-                        
+
+
                             <li class=""><a href="#"
                                     class="">Sales History</a>
                             </li>
-                       
-                        
+
+
                             <li class=""><a href="#"
                                     class="">Prescription List</a></li>
-                       
-                        
-                            <li class=""><a href="#" class="">Sales
+
+
+                            <li class=""><a href="{{route('return')}}" class="">Sales
                                     Return</a></li>
-                       
-                        
+
+
                             <li class=""><a href="#"
                                     class="">Returns
                                     Approval</a>
                             </li>
-                       
+
                     </ul>
                 </li>
-           
+
         </ul>
     </li>
 
@@ -247,100 +247,100 @@
         <a href="#!" class="nav-link"><span class="pcoded-micon"><i class="fas fa-store-alt"></i></span>
             <span class="pcoded-mtext">Stores</span></a>
         <ul class="pcoded-submenu">
-            
+
                 <li class=""><a href="#!" class="">Inventory</a>
                     <ul class="pcoded-submenu">
-                        
+
                             <li class=""><a href="{{route('stocking')}}"
                                     class="">Current Stock</a>
                             </li>
-                       
-                        
+
+
                             <li class=""><a href="#" class="">Price
                                     List</a>
                             </li>
-                       
-                        
+
+
                             <li class=""><a href="#"
                                     class="">Adjustment
                                     History</a>
                             </li>
-                       
-                        
+
+
                             <li class=""><a href="#"
                                     class="">Outgoing Stock</a>
                             </li>
-                       
-                        
+
+
                             <li class=""><a href="#"
                                     class="">Product Ledger</a>
                             </li>
-                       
-                        
+
+
                             <li class=""><a href="#"
                                     class="">Daily Stock Count</a>
                             </li>
-                       
-                        
+
+
                             {{-- <!--li class=""><a target="_blank" href="{{ route('inventory-count-sheet-pdf-gen') }}" class="">Inventory Count Sheet1111</a> </li--> --}}
                             <li class=""><a href="#"
                                     class="">Inventory Count Sheet</a>
                             </li>
-                       
-                        
+
+
                             <li class=""><a href="#"
                                     class="">Stock Transfer</a>
                             </li>
-                       
-                        
+
+
                             <li class=""><a href="#"
                                     class="">Transfer
                                     History</a></li>
-                       
+
                 </li>
             </ul>
         </li>
-   
-    
+
+
         <li class=""><a href="#!" class="">Purchases</a>
             <ul class="pcoded-submenu">
-                
+
                     <li class=""><a href="#"
                             class="">Requisitions</a></li>
-               
-                
+
+
                     <li class=""><a href="#"
                             class="">Issue</a></li>
-               
-                
+
+
                     <li class=""><a href="#" class="">Purchase
                             Order</a>
                     </li>
-               
-                
+
+
                     <li class=""><a href="#" class="">Purchase
                             Order
                             History</a>
                     </li>
-               
-                
+
+
                     <li class=""><a href="#" class="">Goods
                             Receiving</a>
                     </li>
-               
-                
+
+
                     <li class=""><a href="" class="">Material
                             Received</a>
                     </li>
-               
-                
+
+
                     <li class=""><a href="#" class="">Invoice
                             Management</a>
                     </li>
-               
+
             </ul>
         </li>
-   
+
 
     </ul>
     </li>
@@ -351,7 +351,7 @@
             <span class="pcoded-mtext">Appointments</span>
         </a>
         <ul class="pcoded-submenu">
-            {{-- 
+            {{--
             <li class=""><a href="{{ route('appointments.patients') }}" class="">Order
                     Appointment</a></li>
             {{-- --}}
@@ -366,27 +366,27 @@
             <span class="pcoded-mtext">Billing</span>
         </a>
         <ul class="pcoded-submenu">
-            
+
                 <li class=""><a href="#" class="">Bills List</a></li>
-           
-            
+
+
                 <li class=""><a href="#" class="">IPD Bills
                         List</a>
                 </li>
-           
-            
+
+
                 <li class=""><a href="#" class="">Revoke
                         Payment</a></li>
-           
-            
+
+
                 <li class=""><a href="#"
                         class="">Revoke
                         History</a></li>
-           
-            
+
+
                 <li class=""><a href="#" class="">Billing
                         Auth No</a></li>
-           
+
             <li class=""><a href="#" class="">Cashier Cash
                     Box</a></li>
         </ul>
@@ -425,13 +425,13 @@
         </a>
         <ul class="pcoded-submenu">
             <li class=""><a href="#" class="">Expenses</a></li>
-            
+
                 <li class=""><a href="#" class="">Vouchers</a></li>
-           
-            
+
+
                 <li class=""><a href="#" class="">Voucher
                         Reports</a></li>
-           
+
         </ul>
     </li>
 
@@ -442,16 +442,16 @@
             <span class="pcoded-mtext">Users</span>
         </a>
         <ul class="pcoded-submenu">
-            
+
                 <li class=""><a href="#" class="">Roles</a></li>
-           
-            
+
+
                 <li class=""><a href="#" class="">Users</a></li>
-           
-            
+
+
                 <li class=""><a href="#" class="">User
                         Activities</a></li>
-           
+
         </ul>
     </li>
 
@@ -464,57 +464,57 @@
                 class="pcoded-mtext">Reports</span></a>
 
         <ul class="pcoded-submenu">
-            
+
                 <li class=""><a href="#!" class="">Pharmacy Reports</a>
                     <ul class="pcoded-submenu">
-                        
+
                             <li class=""><a href="#" class="">Sales
                                     Reports</a></li>
-                       
-                        
+
+
                             <li class=""><a href="#"
                                     class="">Inventory Reports</a>
                             </li>
                             {{-- <li class=""><a href="{{route('minimum_stock.index')}}" class="">Stock Below Minimum</a></li> --}}
-                       
-                        
+
+
                             <li class=""><a href="#"
                                     class="">Purchase Reports</a></li>
-                       
-                        
+
+
                             <li class=""><a href="#"
                                     class="">Accounting Reports</a>
                             </li>
-                       
+
 
                     </ul>
                 </li>
-           
-            
+
+
                 <li class=""><a href="#" class="">Patients
                         Reports</a></li>
-           
-            
+
+
                 <li class=""><a href="#" class="">
                         Consultation Reports</a></li>
-           
-            
+
+
                 <li class=""><a href="#"
                         class="">Laboratory Reports</a>
-               
-                
+
+
                 <li class=""><a href="#" class="">Services
                         Reports</a>
-               
-                
+
+
                 <li class=""><a href="#" class="">Billing
                         Reports</a></li>
-           
-            
+
+
                 <li class=""><a href="#" class="">Reagents
                         Reports</a></li>
-           
-            
+
+
                 <li class=""><a href="#!" class="">Other Reports</a>
                     <ul class="pcoded-submenu">
                         <li class=""><a href="#"
@@ -524,7 +524,7 @@
                                 class="">Doctor Income Report</a></li>
                     </ul>
                 </li>
-           
+
         </ul>
     </li>
 
@@ -548,23 +548,23 @@
                     <ul class="pcoded-submenu">
                             <li class=""><a href="#"
                                     class="">Doctors</a></li>
-                     
+
                             <li class=""><a href="#" class="">User
                                     Doctor</a></li>
-                       
+
                             <li class=""><a href="#"
                                     class="">Doctor Departments</a></li>
-                     
+
                             <li class=""><a href="#"
                                     class="">Doctor Services</a></li>
-                     
+
                             <li class=""><a href="#"
                                     class="">Doctor Earnings</a></li>
-                     
+
                             <li class=""><a href="#"
                                     class="">Price Categories</a>
                             </li>
-                     
+
                             <li class=""><a href="#"
                                     class="">Expense Categories</a>
                             </li>
@@ -582,60 +582,60 @@
                 <li class=""><a href="#!" class="nav-item pcoded-hasmenu">IPD Patients</a>
                     <ul class="pcoded-submenu">
                             <li><a href="#" class="">Patient Wards</a></li>
-                  
+
                     </ul>
                 </li>
                 <li class=""><a href="#!" class="nav-item pcoded-hasmenu">Services</a>
                     <ul class="pcoded-submenu">
                             <li><a href="#" class="">Manage Services</a></li>
-                      
+
                             <li class=""><a href="#"
                                     class="">Services
                                     Price List</a></li>
-                   
+
                     </ul>
                 </li>
                 <li class=""><a href="#!" class="nav-item pcoded-hasmenu">Laboratory</a>
                     <ul class="pcoded-submenu">
                             <li><a href="#" class="">Lab Tests</a></li>
-                        
+
                             <li class=""><a href="#" class="">Lab
                                     Tests Prices</a></li>
-                     
+
                             <li class=""><a href="#"
                                     class="">Lab Tests Price
                                     List</a></li>
-                       
-                        
+
+
                             <li><a href="#" class="">Reagents</a></li>
-                       
-                        
+
+
                             <li><a href="#" class="">Reagents Consumption</a>
                             </li>
                             <li><a href="#" class="">Consumables List</a>
                             </li>
-                       
+
                     </ul>
                 </li>
-           
-            
+
+
                 <li class=""><a href="#!" class="nav-item pcoded-hasmenu">Radiology</a>
                     <ul class="pcoded-submenu">
-                        
+
                             <li><a href="#" class="">Imaging Tests</a></li>
-                       
-                        
+
+
                             <li class=""><a href="#"
                                     class="">Imaging Tests Prices</a></li>
-                       
-                        
+
+
                             <li class=""><a href="#"
                                     class="">Imaging Tests Price
                                     List</a></li>
-                       
+
                     </ul>
                 </li>
-           
+
 
 
             {{-- <li class="">
@@ -645,47 +645,47 @@
                 <!-- <li class=""><a href="" class="">Radiologists</a></li>  -->
             </ul>
         </li> --}}
-            
+
                 <li class=""><a href="#!" class="">Store</a>
                     <ul class="pcoded-submenu">
-                        
+
                             <li class=""><a href="#"
                                     class="">Products</a></li>
-                       
-                        
+
+
                             <li class=""><a href="#"
                                     class="">Product
                                     Categories</a></li>
-                       
-                        
+
+
                             <li class=""><a href="#"
                                     class="">Product Subcategories</a>
                             </li>
-                       
-                        
+
+
                             <li class=""><a href="#"
                                     class="">Adjustment Reasons</a>
                             </li>
-                       
-                        
+
+
                             <li class=""><a href="#"
                                     class="">Suppliers</a></li>
-                       
-                        
+
+
                             <li class=""><a href="#" class="">Stores</a>
                             </li>
-                       
-                        
+
+
                             <li class=""><a href="#" class="">Product
                                     Import</a></li>
-                       
-                        
+
+
                             <li class=""><a href="#"
                                     class="">Stock Pricing</a></li>
-                       
+
                     </ul>
                 </li>
-           
+
         </ul>
     </li>
 
@@ -695,69 +695,69 @@
             <span class="pcoded-micon">
                 <i class="fas fa-h-square"></i></span><span class="pcoded-mtext">NHIF</a></span>
         <ul class="pcoded-submenu">
-            
+
                 <li class=""><a href="#"
                         class="">Authorizations</a></li>
-           
-            
+
+
                 <li class="">
                     <a href="#" class="">Claims</a>
                     <ul class="pcoded-submenu">
-                        
+
                             <li class="">
                                 <a href="#" class="">Generate Claims</a>
                             </li>
-                       
-                        
+
+
                             <li class="">
                                 <a href="#" class="">Process Claims</a>
                             </li>
-                       
+
                     </ul>
                 </li>
-           
-            
+
+
                 <li class=""><a href="#"
                         class="">Settings</a>
                 </li>
-           
+
             <li class=""><a href="#!" class="">Services</a>
                 <ul class="pcoded-submenu">
-                    
+
                         <li class=""><a href="#"
                                 class="">NHIF
                                 Services List</a></li>
-                   
-                    
+
+
                         <li class=""><a href="#"
                                 class="">Tests Integration</a>
                         </li>
-                   
-                    
+
+
                         <li class=""><a href="#"
                                 class="">Radiology Integration</a>
                         </li>
-                   
-                    
+
+
                         <li class=""><a href="#"
                                 class="">Products Integration</a></li>
-                   
-                    
+
+
                         <li class=""><a href="#"
                                 class="">Services Integration</a>
                         </li>
-                   
+
 
                 </ul>
             </li>
-            
+
                 <li class=""><a href="#"
                         class="">Referrals</a></li>
-           
-            
+
+
                 <li class=""><a href="#" class="">Reports</a>
                 </li>
-           
+
         </ul>
     </li>
 
@@ -774,27 +774,27 @@
                 <i class="feather icon-settings"></i></span><span class="pcoded-mtext">Settings</span>
         </a>
         <ul class="pcoded-submenu">
-            
+
                 <li class=""><a href="#" class="">Master
                         Settings</a></li>
-           
-            
+
+
                 <li class=""><a href="#" class="">Billing
                         Settings</a></li>
-           
 
-     
+
+
                 <li class=""><a href="#"
                         class="">Notification Settings</a></li>
 
-            
+
                 <li class=""><a href="#" class="">ICD-10
                         Settings</a></li>
-           
-            
+
+
                 <li class=""><a href="#" class="">MTUHA
                         Settings</a></li>
-           
+
             <li class=""><a href="#" class="">TRA Tax
                     Settings</a></li>
         </ul>

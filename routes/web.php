@@ -9,8 +9,8 @@ use App\Http\Controllers\SaleController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReceiveController;
 use App\Http\Controllers\StockController;
-use App\Http\Controllers\RoleController; 
-use App\Http\Controllers\PermissionController; 
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\GoodsReceivingController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -40,6 +40,7 @@ Auth::routes(['register' => false]);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile_index', [ProfileController::class, 'index'])->name('profile-index');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/dashboard', [HomeController::class,'index'])->name('dashboard');
@@ -61,6 +62,8 @@ Route::resource('receive', ReceiveController::class);
 Route::get('stock', [StockController::class,'index'])->name('stocking');
 Route::get('sale', [StockController::class,'sale'])->name('sale');
 Route::post('sale_store', [SaleController::class,'store'])->name('sale-store');
+Route::get('return', [SaleController::class,'returnProcess'])->name('return');
+Route::post('return_store', [SaleController::class,'processReturn'])->name('return-store');
 Route::get('export/medicines', [StockController::class,'exportToExcel'])->name('export.medicines');
 
 

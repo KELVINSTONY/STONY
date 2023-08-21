@@ -15,11 +15,14 @@ class User extends Authenticatable
 
     /**
      * The attributes that are mass assignable.
-     *
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'firstName',
+        'lastName',
+        'birthdate',
+        'address',
+        'profilePicture',
         'email',
         'password',
     ];
@@ -52,5 +55,10 @@ class User extends Authenticatable
     public function patients()
     {
         return $this->belongsToMany(Patient::class)->withTimestamps();
+    }
+
+    public function sale()
+    {
+        return $this->hasMany(Sale::class);
     }
 }

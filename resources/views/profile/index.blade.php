@@ -1,0 +1,189 @@
+@extends("layouts.master")
+
+@section('page_css')
+@endsection
+
+@section('content-title')
+    Profile
+
+@endsection
+
+@section('content-sub-title')
+    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="#"> Profile </a></li>
+@endsection
+
+
+
+@section('content')
+
+    <div class="col-sm-12">
+
+        <div class="card">
+
+            <div class="card-body">
+                @if (session('error'))
+                    <div class="alert alert-danger mx-auto" style="width: 70%">
+                        {{ session('error') }}
+                    </div>
+                @endif
+                @if (session('success'))
+                    <div class="alert alert-success mx-auto" style="width: 70%">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                <div class="container">
+                    <div class="row my-2">
+                        <div class="col-lg-8 order-lg-2">
+                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home"
+                                        role="tab" aria-controls="pills-home" aria-selected="true">Profile</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill"
+                                        href="#pills-profile" role="tab" aria-controls="pills-profile"
+                                        aria-selected="false">Change Password</a>
+                                </li>
+                                @can('Update NHIF User Credentials', Model::class)
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="pills-nhif-tab" data-toggle="pill" href="#pills-nhif"
+                                            role="tab" aria-controls="pills-nhif" aria-selected="false">NHIF Credentials</a>
+                                    </li>
+                                @endcan
+                            </ul>
+                            <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                    aria-labelledby="pills-home-tab">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h6>Full Name</h6>
+                                            <p>
+                                                {{ Auth::user()->firstName }}
+                                            </p>
+                                            <h6>Last Name</h6>
+                                            <p>
+                                                {{ Auth::user()->lastName }}
+                                            </p>
+                                            <h6>Address</h6>
+                                            <p>
+                                                @if (Auth::user()->address != null)
+                                                    {{ Auth::user()->address }}
+                                                @else
+                                                    <i>--N/l--</i>
+                                                @endif
+                                            </p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h6>Email</h6>
+                                            <p>
+                                                {{ Auth::user()->email }}
+                                            </p>
+                                            <h6>Position</h6>
+                                            <p>
+                                                {{ Auth::user()->roles->pluck('name')[0] }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                                    aria-labelledby="pills-profile-tab">
+                                </div>
+                                @can('Update NHIF User Credentials', Model::class)
+                                    <div class="tab-pane fade" id="pills-nhif" role="tabpanel"
+                                        aria-labelledby="pills-nhif-tab">
+                                        <form method="POST" action="{{ route('update-nhif-user-credentials') }}">
+                                            @csrf
+
+                                            <div class="input-group mb-3{{ $errors->has('nhif_username') ? ' has-error' : '' }} mx-auto"
+                                                style="width: 70%">
+                                                <input id="nhif_username" type="text" class="form-control"
+                                                    name="nhif_username" placeholder="NHIF username"
+                                                    value="{{ Auth::user()->nhif_username }}">
+
+                                                @if ($errors->has('nhif_username'))
+                                                    <span class="help-block">
+                                                        <strong>{{ $errors->first('nhif_username') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+
+                                            <div class="input-group mb-3{{ $errors->has('nhif_password') ? ' has-error' : '' }} mx-auto"
+                                                style="width: 70%">
+                                                <input id="nhif_password" type="password" class="form-control"
+                                                    name="nhif_password" placeholder="NHIF Password" value="">
+
+                                                @if ($errors->has('new-password'))
+                                                    <span class="help-block">
+                                                        <strong>{{ $errors->first('nhif_password') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+
+                                            <div class="form-group mx-auto">
+                                                <center>
+                                                    <div class="col-md-12 col-md-offset-4">
+                                                        <button type="submit" class="btn btn-primary">
+                                                            Update
+                                                        </button>
+                                                    </div>
+                                                </center>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                @endcan
+
+                            </div>
+                        </div>
+                        <div class="col-lg-4 order-lg-1 text-center"><br>
+                            {{-- <h5>User Image</h5> --}}
+                            @php
+                                $logo = Auth::user()->profilePicture;
+                            @endphp
+                            @if (Auth::user()->profilePicture != null)
+                                <img src="{{ asset('storage/profile_pictures/' . $logo) }}"
+                                    class="mx-auto img-fluid img-circle d-block" alt="avatar" style="height: 200px">
+                            @else
+                                <img src="{{ asset('male_avatar.png') }}"
+                                    class="mx-auto img-thumbnail img-fluid img-circle d-block" alt="avatar"
+                                    style="height: 200px">
+                            @endif
+
+                            {{-- <h6 class="mt-2">Upload a different photo</h6> --}}
+{{--                            <label class="custom-file m-1">--}}
+{{--                                <form action="{{ route('updateProfileImage') }}" method="post"--}}
+{{--                                    enctype="multipart/form-data">--}}
+{{--                                    @csrf--}}
+{{--                                    <input type="file" id="profile_image" name="profile_image"--}}
+{{--                                        class="form-control w-60 mx-auto" required>--}}
+{{--                                    <button class="btn btn-sm btn-primary m-1" type="submit">Update</button>--}}
+{{--                                </form>--}}
+{{--                            </label>--}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+@endsection
+
+@push('page_scripts')
+{{--    @include('roles.delete')--}}
+
+{{--    @include('partials.notification')--}}
+
+    <script>
+        $('#deleteModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget);
+            var id = button.data('id');
+            var message = "Are you sure you want to delete Role '".concat(button.data('name'), "'?");
+            var modal = $(this);
+            modal.find('.modal-body #message').text(message);
+            modal.find('.modal-body #role_id').val(id)
+        })
+    </script>
+
+@endpush
