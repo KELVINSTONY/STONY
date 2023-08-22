@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Allocation;
 use App\Models\Patient;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PatientController extends Controller
 {
@@ -17,6 +20,31 @@ class PatientController extends Controller
         return view('patients.create');
     }
 
+
+    public function allocatePatient($id)
+    {
+        $user = User::all();
+        $patient = Patient::find($id);
+        return view('allocation.create', compact('user','patient'));
+    }
+    public function storeAllocation (Request $request){
+       $validation =  $request->validate(['user_id' => 'required',
+            'patient_id'=>'required']);
+       $allocated =  Allocation::firstOrNew([
+         'patient_id' =>$validation['patient_id'],
+         'allocated' => $validation['user_id'],
+         'user_id' => Auth::user()->id,
+          'status' => 1
+        ]);
+       $allocated->save();
+        return redirect()->route('dashboard')->with('success', 'Patient allocated successfully!');
+    }
+    public function patientAllocated (){
+        $user = Auth::user()->id;
+        $eager = Allocation::where('allocated',$user)->get();
+        $allocated = Allocation::all();
+        dd($allocated);
+    }
     public function store(Request $request)
     {
         $request->validate([

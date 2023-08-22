@@ -54,11 +54,15 @@ class User extends Authenticatable
 
     public function patients()
     {
-        return $this->belongsToMany(Patient::class)->withTimestamps();
+        return $this->belongsToMany(Patient::class);
     }
 
     public function sale()
     {
         return $this->hasMany(Sale::class);
+    }
+
+    public function allocation (){
+        $this->belongsToMany(Allocation::class,'allocated');
     }
 }

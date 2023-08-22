@@ -10,7 +10,7 @@
                    aria-selected="true">Patients
                     Summary</a>
             </li>
-            @endcan 
+            @endcan
             <li class="nav-item">
                 <a class="nav-link" data-toggle="pill" href="#pills-consultation" role="tab"
                    aria-selected="false">Consultations
@@ -33,7 +33,7 @@
                     Summary</a>
             </li>
     </ul>
-    <div class="row"> 
+    <div class="row">
         <div class="col-md-3">
                     <a href="{{ route('medicines.create') }}" class="btn btn-primary">Add New Medicine</a>
         </div>
@@ -48,6 +48,12 @@
         {{-- <a href="{{ route('roles.create') }}" class="btn btn-primary">Add New Role</a> --}}
         <a href="{{ route('permissions.index') }}" class="btn btn-primary">Add New Role</a>
         </div>
+
+        <div class="col-md-3">
+            {{-- <a href="{{ route('roles.create') }}" class="btn btn-primary">Add New Role</a> --}}
+            <a href="{{ route('allocated-index') }}" class="btn btn-primary">Patient Allocated</a>
+        </div>
+
         <div class="col-md-3">
             <a href="{{ route('prescriptions.create') }}" class="btn btn-primary">Add New Prescription</a>
         </div>
@@ -136,6 +142,7 @@
                             <td>
                                 <a href="{{ route('patients.show', $patient->id) }}" class="btn btn-sm btn-info">View</a>
                                 <a href="{{ route('patients.edit', $patient->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                                <a href="{{ route('allocate', $patient->id) }}" class="btn btn-sm btn-primary">Allocate</a>
                                 <form action="{{ route('patients.destroy', $patient->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
@@ -177,7 +184,7 @@
             </nav>
         </div>
         @endisset
-        
+
     </div>
     <div class="row">
             @isset($prescriptions)

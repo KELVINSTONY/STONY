@@ -52,6 +52,9 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('medicines', MedicineController::class);
 Route::resource('patients', PatientController::class);
+Route::get('/allocate/{id}', [PatientController::class,'allocatePatient'])->name('allocate');
+Route::get('/allocated_index', [PatientController::class,'patientAllocated'])->name('allocated-index');
+Route::post('allocate_store', [PatientController::class,'storeAllocation'])->name('allocate-store');
 Route::resource('prescriptions', PrescriptionController::class);
 Route::resource('prescription_items', PrescriptionItemController::class);
 Route::resource('doctors', DoctorController::class);

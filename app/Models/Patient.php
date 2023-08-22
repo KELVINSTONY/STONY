@@ -25,4 +25,8 @@ class Patient extends Model
     {
         return $this->belongsToMany(User::class)->withTimestamps();
     }
+
+    public function allocation (){
+        $this->belongsToMany(Allocation::class);
+    }
 }

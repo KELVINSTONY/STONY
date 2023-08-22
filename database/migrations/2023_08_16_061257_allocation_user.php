@@ -11,7 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('allocation_users', function (Blueprint $table) {
+        $table->id();
+        $table->unsignedBigInteger('patient_id');
+        $table->integer('allocated')->default(0);
+        $table->integer('attended')->default(0);
+        $table->integer('status')->default(0);
+        $table->unsignedBigInteger('user_id');
+        $table->timestamps();
+        });
     }
 
     /**
@@ -19,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('allocation_users');
     }
 };
